@@ -12,7 +12,7 @@ struct binaryTree
 /*function that prints the inOrder traversal of the binary tree
  *in which first the left side of the tree is printed followed by the root
  *and then the right side of the tree
-*/
+ */
 void inOrder(struct binaryTree *node)
 {
     if(node == NULL)
@@ -24,6 +24,22 @@ void inOrder(struct binaryTree *node)
         inOrder(node->right);
     }
 
+}
+
+/*function that prints the preOrder traversal of the binary tree
+ *in which first the root of the tree is printed followed by the left side
+ *and then the right side of the tree
+ */
+void preOrder(struct binaryTree *node)
+{
+    if(node == NULL)
+        return;
+    else
+    {
+        printf("%d ", node->key);
+        preOrder(node->left);
+        preOrder(node->right);
+    }
 }
 
 struct binaryTree *newNode(int data)
@@ -45,7 +61,11 @@ int main()
     node->left->right = newNode(5);
     node->right->left = newNode(6);
     node->right->right = newNode(7);
+    printf("Printing inOrder traversal\n");
     inOrder(node);
+    printf("\n");
+    printf("Printing preOrder traversal\n");
+    preOrder(node);
     printf("\n");
 
 }
