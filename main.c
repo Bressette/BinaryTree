@@ -10,7 +10,7 @@ struct binaryTree
 };
 
 //function that fills a binary tree with the amount of nodes specified in the function call
-struct binaryTree fillTree(struct binaryTree *node, int numNodes)
+struct binaryTree *fillTree(struct binaryTree *node, int numNodes)
 {
     if(numNodes <= 0)
     {
@@ -20,20 +20,27 @@ struct binaryTree fillTree(struct binaryTree *node, int numNodes)
     else
     {
         node = malloc(sizeof(struct binaryTree));
-        printf("In else");
         node->key = rand() % 100;
         fillTree(node->left, numNodes-1);
         fillTree(node->right, numNodes-1);
     }
+}
 
-
+void inOrder(struct binaryTree *node)
+{
+    if(node->key == NULL)
+        return;
+    else
+    {
+        inOrder(node->left);
+        printf("The value of key is %d", node->key);
+        inOrder(node->right);
+    }
 }
 
 int main()
 {
     srand(time(0));
     struct binaryTree *node;
-    fillTree(node, 5);
-    printf("After fill tree");
-
+    node = fillTree(node, 5);
 }
