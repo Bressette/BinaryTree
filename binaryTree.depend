@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1570384626 source:c:\users\johnathan\documents\gitprojects\binarytree\binarytree\main.c
+	"stdlib.h"
+	"stdio.h"
+	"time.h"
+
