@@ -42,6 +42,23 @@ void preOrder(struct binaryTree *node)
     }
 }
 
+/*function that prints the postOrder traversal of the binary tree
+ *in which first the left side of the tree is printed followed by the right
+ *side of the tree and then the root of the tree
+ */
+
+ void postOrder(struct binaryTree *node)
+ {
+     if(node == NULL)
+        return;
+     else
+     {
+         postOrder(node->left);
+         postOrder(node->right);
+         printf("%d ", node->key);
+     }
+ }
+
 struct binaryTree *newNode(int data)
 {
     struct binaryTree *node = malloc(sizeof(struct binaryTree));
@@ -54,18 +71,26 @@ struct binaryTree *newNode(int data)
 int main()
 {
     srand(time(0));
+
     struct binaryTree *node = newNode(1);
+
     node->left = newNode(2);
     node->right = newNode(3);
     node->left->left = newNode(4);
     node->left->right = newNode(5);
     node->right->left = newNode(6);
     node->right->right = newNode(7);
+
     printf("Printing inOrder traversal\n");
     inOrder(node);
     printf("\n");
+
     printf("Printing preOrder traversal\n");
     preOrder(node);
+    printf("\n");
+
+    printf("Printing postOrder traversal\n");
+    postOrder(node);
     printf("\n");
 
 }
