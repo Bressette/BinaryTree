@@ -59,6 +59,22 @@ void preOrder(struct binaryTree *node)
      }
  }
 
+ int treeHeight(struct binaryTree *node)
+ {
+     if(node == NULL)
+        return 0;
+
+     return max(treeHeight(node->left), treeHeight(node->right)) + 1;
+ }
+
+ int max(int a, int b)
+ {
+     if(a < b)
+        return b;
+     else
+        return a;
+ }
+
 struct binaryTree *newNode(int data)
 {
     struct binaryTree *node = malloc(sizeof(struct binaryTree));
@@ -93,6 +109,7 @@ int main()
     postOrder(node);
     printf("\n");
 
+    printf("The tree height is %d\n", treeHeight(node));
 }
 
 /*The current binary tree looks like the following:
