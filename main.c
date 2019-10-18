@@ -96,6 +96,27 @@ struct binaryTree *newNode(int data)
     return(node);
 }
 
+
+//function that inserts into a sorted binary tree
+struct binaryTree *insertNode(struct binaryTree *node, int newData)
+{
+    struct binaryTree *tempNode;
+    tempNode = newNode(newData);
+
+    if(node == NULL)
+    {
+        node = tempNode;
+        return node;
+    }
+
+    else if(newData > node->key)
+        node->right = insertNode(node->right, newData);
+
+    else if(newData < node->key)
+        node->left = insertNode(node->left, newData);
+
+}
+
 int minTree(struct binaryTree *node, int min)
 {
     if(node == NULL)
@@ -148,11 +169,22 @@ int main()
 
     int min = minTree(node, 100);
 
-    printf("The value of min is %d", min);
+    printf("The value of min is %d\n", min);
 
     int max = maxTree(node, 0);
 
-    printf("The value of max is %d", max);
+    printf("The value of max is %d\n", max);
+
+    struct binaryTree *bst = malloc(sizeof(struct binaryTree));
+    bst = NULL;
+    bst = insertNode(bst, 1);
+    bst = insertNode(bst, 10);
+    bst = insertNode(bst, 15);
+    bst = insertNode(bst, 20);
+    bst = insertNode(bst, 5);
+    bst = insertNode(bst, 3);
+
+    inOrder(bst);
 
 }
 
