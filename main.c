@@ -62,9 +62,21 @@ void preOrder(struct binaryTree *node)
  int treeHeight(struct binaryTree *node)
  {
      if(node == NULL)
-        return 0;
+        return -1;
 
      return max(treeHeight(node->left), treeHeight(node->right)) + 1;
+ }
+
+ void removeTree(struct binaryTree *node)
+ {
+     if(node == NULL)
+        return;
+     else
+     {
+         removeTree(node->left);
+         removeTree(node->right);
+         free(node);
+     }
  }
 
  int max(int a, int b)
@@ -82,6 +94,19 @@ struct binaryTree *newNode(int data)
     node->left = NULL;
     node->right = NULL;
     return(node);
+}
+
+int minTree(struct binaryTree *node, int min)
+{
+    if(node == NULL)
+        return;
+
+    if(node->key <= min)
+        min = node->key;
+    minTree(node->left, min);
+    minTree(node->right, min);
+
+    return min;
 }
 
 int main()
@@ -110,6 +135,11 @@ int main()
     printf("\n");
 
     printf("The tree height is %d\n", treeHeight(node));
+
+    int min = minTree(node, 100);
+
+    printf("The value of min is %d", min);
+
 }
 
 /*The current binary tree looks like the following:
