@@ -99,14 +99,24 @@ struct binaryTree *newNode(int data)
 int minTree(struct binaryTree *node, int min)
 {
     if(node == NULL)
-        return;
+        return min;
 
     if(node->key <= min)
         min = node->key;
     minTree(node->left, min);
     minTree(node->right, min);
 
-    return min;
+}
+
+int maxTree(struct binaryTree *node, int max)
+{
+    if(node == NULL)
+        return max;
+
+    if(node->key >= max)
+        max = node->key;
+    maxTree(node->left, max);
+    maxTree(node->right, max);
 }
 
 int main()
@@ -139,6 +149,10 @@ int main()
     int min = minTree(node, 100);
 
     printf("The value of min is %d", min);
+
+    int max = maxTree(node, 0);
+
+    printf("The value of max is %d", max);
 
 }
 
