@@ -67,7 +67,7 @@ void preOrder(struct binaryTree *node)
      return max(treeHeight(node->left), treeHeight(node->right)) + 1;
  }
 
- void removeTree(struct binaryTree *node)
+ struct binaryTree *removeTree(struct binaryTree *node)
  {
      if(node == NULL)
         return;
@@ -75,6 +75,7 @@ void preOrder(struct binaryTree *node)
      {
          removeTree(node->left);
          removeTree(node->right);
+         printf("Deleting node %d\n", node->key);
          free(node);
      }
  }
@@ -140,6 +141,9 @@ int maxTree(struct binaryTree *node, int max)
     maxTree(node->right, max);
 }
 
+
+
+
 int main()
 {
     srand(time(0));
@@ -185,6 +189,13 @@ int main()
     bst = insertNode(bst, 3);
 
     inOrder(bst);
+    printf("\n");
+
+    bst = removeTree(bst);
+    bst = NULL;
+    bst = insertNode(bst, 1);
+
+
 
 }
 
