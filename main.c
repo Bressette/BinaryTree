@@ -130,6 +130,17 @@ int minTree(struct binaryTree *node, int min)
 
 }
 
+int minBST(struct binaryTree *node)
+{
+    struct binaryTree *temp;
+    temp = node;
+
+    while(temp->left != NULL)
+        temp = temp->left;
+
+    return temp->key;
+}
+
 int maxTree(struct binaryTree *node, int max)
 {
     if(node == NULL)
@@ -211,6 +222,8 @@ int main()
     bst = insertNode(bst, 15);
     bst = insertNode(bst, 20);
     bst = insertNode(bst, 25);
+
+    printf("The min value of the bst is %d\n", minBST(bst));
 
     searchTree(bst, 25);
     inOrder(bst);
