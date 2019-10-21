@@ -141,6 +141,29 @@ int maxTree(struct binaryTree *node, int max)
     maxTree(node->right, max);
 }
 
+void searchTree(struct binaryTree *node, int data)
+{
+    if(node == NULL)
+        return;
+    else if(node->key == data)
+        printf("%d is in the tree\n", data);
+    else if(node->key < data)
+        searchTree(node->right, data);
+    else if(node->key > data)
+        searchTree(node->left, data);
+
+}
+
+struct binaryTree *deleteNode(struct binaryTree *node, int data)
+{
+    if(node == NULL)
+        return;
+
+    if(node->key < data)
+        node->right = deleteNode(node->right, data);
+
+
+}
 
 
 
@@ -181,19 +204,18 @@ int main()
 
     struct binaryTree *bst = malloc(sizeof(struct binaryTree));
     bst = NULL;
-    bst = insertNode(bst, 1);
     bst = insertNode(bst, 10);
-    bst = insertNode(bst, 15);
-    bst = insertNode(bst, 20);
     bst = insertNode(bst, 5);
     bst = insertNode(bst, 3);
+    bst = insertNode(bst, 1);
+    bst = insertNode(bst, 15);
+    bst = insertNode(bst, 20);
+    bst = insertNode(bst, 25);
 
+    searchTree(bst, 25);
     inOrder(bst);
     printf("\n");
 
-    bst = removeTree(bst);
-    bst = NULL;
-    bst = insertNode(bst, 1);
 
 
 
