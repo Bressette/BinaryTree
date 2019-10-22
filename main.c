@@ -59,6 +59,11 @@ void preOrder(struct binaryTree *node)
      }
  }
 
+ /*function that returns the height of the binary tree
+  *passed into the function. The base case returns -1
+  *as the recursive calls will equal the height of the nodes
+  *with the height of the edges being (node height)-1
+  */
  int treeHeight(struct binaryTree *node)
  {
      if(node == NULL)
@@ -67,6 +72,12 @@ void preOrder(struct binaryTree *node)
      return max(treeHeight(node->left), treeHeight(node->right)) + 1;
  }
 
+
+ /*function that takes in a binary tree that will
+  *be deleted. The function recursively traverses
+  *through the tree in post order and frees every
+  *node in the binary tree removing the tree from memory
+  */
  struct binaryTree *removeTree(struct binaryTree *node)
  {
      if(node == NULL)
@@ -80,6 +91,10 @@ void preOrder(struct binaryTree *node)
      }
  }
 
+
+ /*function that compares 2 int values and
+  *returns the value that is larger
+  */
  int max(int a, int b)
  {
      if(a < b)
@@ -88,6 +103,11 @@ void preOrder(struct binaryTree *node)
         return a;
  }
 
+
+ /*function that creates a new node
+  *in a normal binary search tree with
+  *a value equal to the int passed into the function
+  */
 struct binaryTree *newNode(int data)
 {
     struct binaryTree *node = malloc(sizeof(struct binaryTree));
@@ -98,7 +118,11 @@ struct binaryTree *newNode(int data)
 }
 
 
-//function that inserts into a sorted binary tree
+/*function that inserts a new node into
+ *a binary search tree with the node
+ *sorted into the correct position dependent on
+ *the value of newData
+ */
 struct binaryTree *insertNode(struct binaryTree *node, int newData)
 {
     struct binaryTree *tempNode;
@@ -118,6 +142,10 @@ struct binaryTree *insertNode(struct binaryTree *node, int newData)
 
 }
 
+
+/*function that returns the minimum
+ *value in a binary tree
+ */
 int minTree(struct binaryTree *node, int min)
 {
     if(node == NULL)
@@ -130,6 +158,11 @@ int minTree(struct binaryTree *node, int min)
 
 }
 
+/*function that returns the minimum value
+ *in a binary search tree
+ *This function exists because it is more efficient
+ *than minTree when using a binary search tree
+ */
 int minBST(struct binaryTree *node)
 {
     struct binaryTree *temp;
@@ -141,6 +174,9 @@ int minBST(struct binaryTree *node)
     return temp->key;
 }
 
+/*function that returns the maximum value
+ *in a binary tree
+ */
 int maxTree(struct binaryTree *node, int max)
 {
     if(node == NULL)
@@ -151,6 +187,12 @@ int maxTree(struct binaryTree *node, int max)
     maxTree(node->left, max);
     maxTree(node->right, max);
 }
+
+/*function that returns the maximum value
+ *in a binary search tree
+ *This function exists because it is more efficient
+ *than maxTree when using a binary search tree
+ */
 
 int maxBST(struct binaryTree *node)
 {
@@ -163,6 +205,11 @@ int maxBST(struct binaryTree *node)
     return temp->key;
 }
 
+/*function that recursively traverses a
+ *binary search tree and prints if the
+ *value passed into the function is
+ *present in the tree
+ */
 void searchTree(struct binaryTree *node, int data)
 {
     if(node == NULL)
@@ -175,6 +222,7 @@ void searchTree(struct binaryTree *node, int data)
         searchTree(node->left, data);
 
 }
+
 
 struct binaryTree *deleteNode(struct binaryTree *node, int data)
 {
@@ -191,8 +239,8 @@ struct binaryTree *deleteNode(struct binaryTree *node, int data)
 
 int main()
 {
-    srand(time(0));
 
+    //initialization of a balanced unsorted binary tree with value from 1-7
     struct binaryTree *node = newNode(1);
 
     node->left = newNode(2);
@@ -224,6 +272,7 @@ int main()
 
     printf("The value of max is %d\n", max);
 
+    //tree used for testing binary search tree functions
     struct binaryTree *bst = malloc(sizeof(struct binaryTree));
     bst = NULL;
     bst = insertNode(bst, 10);
